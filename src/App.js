@@ -5,6 +5,7 @@ export const ACTIONS = {
   ADD_TODO : 'addTodo',
   TOGGLE : 'toogleTodo',
   REMOVE: 'remove',
+  REMOVE_COMPLETED: 'removeCompleted',
 }
 
 function reducer(todos, action) {
@@ -19,6 +20,8 @@ function reducer(todos, action) {
         })
       case ACTIONS.REMOVE:
         return todos.filter(todo => todo.ID !== action.payload.ID)
+      case ACTIONS.REMOVE_COMPLETED:
+        return  
       default:
         return todos   
     }
