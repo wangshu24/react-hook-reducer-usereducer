@@ -21,7 +21,7 @@ function reducer(todos, action) {
       case ACTIONS.REMOVE:
         return todos.filter(todo => todo.ID !== action.payload.ID)
       case ACTIONS.REMOVE_COMPLETED:
-        return  
+        return  todos.filter(todo => todo.complete === false)  
       default:
         return todos   
     }
@@ -43,15 +43,21 @@ function App() {
     console.log([todos])
   }
 
+  function removeAllCompleted(){
+    dispatch({type: ACTIONS.REMOVE_COMPLETED, payload:{complete: true}})
+  }
+
   return (
    <>
    <form onSubmit={handleSubmit}>
      <input type="text" value={name} onChange={e => setName(e.target.value)}/>
    </form>
-   <button>REMOVE COMPLETED</button>
+   <button onClick={removeAllCompleted}>REMOVE COMPLETED</button>
+   
    {todos.map(todo => {
      return <Todo  key={todo.ID} todo={todo} dispatch={dispatch}></Todo>
    })}
+
    </>
   );
 }
